@@ -1,0 +1,11 @@
+---
+- name: Backup Configuration Files
+  hosts: target_servers
+  tasks:
+    - name: Create a backup directory
+      file:
+        path: /backup
+        state: directory
+
+    - name: Backup configuration files
+      command: cp /etc/config.conf /backup/config_backup.conf

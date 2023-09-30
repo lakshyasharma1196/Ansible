@@ -1,0 +1,8 @@
+---
+- name: Backup and Restore Database
+  hosts: development
+  become: yes
+  tasks:
+    - name: Backup database
+      command: mysqldump -u db_user -p{{ db_password }} my_database > /backup/db_backup.sql
+

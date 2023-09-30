@@ -1,0 +1,15 @@
+---
+- name: Manage User Accounts
+  hosts: target1
+  become: yes
+  tasks:
+    - name: Create user
+      user:
+        name: demo
+        state: present
+        password: "{{ 'secure_password' | password_hash('sha512') }}"
+
+    - name: Add user to the sudo group
+      user:
+        name: demo
+        groups: sudo

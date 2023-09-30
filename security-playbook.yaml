@@ -1,0 +1,9 @@
+---
+- name: Harden Security
+  hosts: target_servers
+  become: yes
+  tasks:
+    - name: Configure firewall
+      ufw:
+        rule: allow
+        port: 22

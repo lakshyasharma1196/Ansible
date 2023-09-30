@@ -1,0 +1,9 @@
+---
+- name: Update Packages
+  hosts: web_servers
+  become: yes
+  tasks:
+    - name: Update all packages
+      apt:
+        upgrade: dist
+        update_cache: yes

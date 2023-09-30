@@ -1,0 +1,54 @@
+# localhost
+localhost ansible_connection=localhost
+
+# webservers
+target1 ansible_host=192.168.1.114 ansible_ssh_pass=mytarget1
+target2 ansible_host=193.168.1.115 ansible_ssh_pass=mytarget2
+
+
+# Databases
+development_sql_DB ansible_host=development-mysql-db.cluster-XXXXXXXXXXXXXXXXXX.rds.amazonaws.com ansible_user=admin-dev ansible_password=dev@ss123!
+staging_sql_DB ansible_host=stging-mysql-db.cluster-XXXXXXXXXXXXXXXXXX.rds.amazonaws.com ansible_user=admin-stag ansible_password=stag@ss123!
+production_sql_DB ansible_host=production-mysql-db.cluster-XXXXXXXXXXXXXXXXXX.rds.amazonaws.com ansible_user=admin-prod ansible_password=prod@ss123!
+
+
+[web_servers]
+target1 
+target2 
+
+[docker_servers]
+target1
+
+[docker_servers]
+target1 
+target2 
+
+[app_servers]
+target2 
+
+[web_nodes]
+target1
+target2
+
+[db_servers]
+development_sql_DB
+staging_sql_DB
+production_sql_DB
+
+[development]
+development_sql_DB
+
+[staging]
+staging__sql_DB
+
+[production]
+production_sql_DB
+
+[Environment:children]
+development
+staging
+production
+
+[all_servers:children]
+web_nodes
+db_servers
